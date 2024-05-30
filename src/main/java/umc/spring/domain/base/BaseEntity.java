@@ -1,5 +1,6 @@
 package umc.spring.domain.base;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -15,7 +16,9 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
     @CreatedDate
+    @Column(length = 6)
     private LocalDateTime createdAt;
     @LastModifiedDate
+    @Column(length = 6)
     private LocalDateTime updatedAt;
 }

@@ -10,6 +10,7 @@ import umc.spring.domain.enums.TransactionStatus;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PointTransaction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "point_transaction_id")

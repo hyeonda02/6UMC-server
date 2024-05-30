@@ -2,6 +2,7 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import umc.spring.domain.base.BaseEntity;
 
 @Entity
@@ -14,8 +15,11 @@ public class Alarm extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ColumnDefault("false")
     private Boolean eventAlarm;
+    @ColumnDefault("false")
     private Boolean reviewAlarm;
+    @ColumnDefault("false")
     private Boolean questionAlarm;
 
 

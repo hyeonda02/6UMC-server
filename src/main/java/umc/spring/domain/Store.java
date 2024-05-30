@@ -18,8 +18,11 @@ public class Store extends BaseEntity {
     @Column(name = "store_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false,length = 60)
     private String storeName;
+    @Column(nullable = false,length = 30)
     private Float storeTotalGrade;
+    @Column(nullable = false,length = 60)
     private String storeAddress;
 
     /**

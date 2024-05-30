@@ -20,6 +20,7 @@ public class MissionComplete extends BaseEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'CHALLENGING'")
     private CompleteStatus missionComplete;
 
 

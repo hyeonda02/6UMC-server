@@ -14,6 +14,7 @@ public class Answer extends BaseEntity {
     @Column(name= "answer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false,length = 100)
     private String content;
 
     /** 연관관계 매핑 */

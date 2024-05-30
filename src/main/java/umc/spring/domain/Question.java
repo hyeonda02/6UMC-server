@@ -18,9 +18,12 @@ public class Question extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
     private Long id;
+    @Column(nullable = false,length = 50)
     private String questionTitle;
+    @Column(nullable = false,length = 50)
     private String questionContent;
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(30) DEFAULT 'NO'")
     private QuestionStatus questionStatus;
     /**
      * 연관관계 매핑

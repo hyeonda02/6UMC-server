@@ -12,12 +12,11 @@ import umc.spring.domain.base.BaseEntity;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberPrefer extends BaseEntity {
+
     @Id
     @Column(name = "member_prefer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
 
     /**
      * 연관관계 매핑

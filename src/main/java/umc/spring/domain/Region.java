@@ -15,6 +15,7 @@ public class Region extends BaseEntity {
     @Column(name = "region_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false,length = 30)
     private String name;
 
 }

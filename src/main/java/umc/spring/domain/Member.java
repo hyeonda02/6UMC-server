@@ -2,6 +2,7 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import umc.spring.domain.base.BaseEntity;
 import umc.spring.domain.enums.MemberGender;
 import umc.spring.domain.enums.MemberStatus;
@@ -24,18 +25,25 @@ public class Member extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, length = 20)
     private String name;
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'NO'")
     private MemberGender gender;
+    @Column(nullable = false, length = 50)
     private String email;
+    @Column(nullable = false, length = 40)
     private String phone;
+    @Column(nullable = false, length = 40)
     private String address;
+    @Column(nullable = false, length = 40)
     private String spec_address;
-    private String birth;
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private MemberStatus status;
     private LocalDate inactiveDate;
-    private Integer titalPoint;
+    @ColumnDefault("0")
+    private Integer totalPoint;
 
     /**
      * 연관관계 매핑
