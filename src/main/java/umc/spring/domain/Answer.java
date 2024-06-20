@@ -18,7 +18,7 @@ public class Answer extends BaseEntity {
     private String content;
 
     /** 연관관계 매핑 */
-    @OneToOne(mappedBy = "answer", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "answer")
     private Question question;
 }
 
