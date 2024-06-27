@@ -2,6 +2,7 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import umc.spring.domain.base.BaseEntity;
 import umc.spring.domain.mapping.MissionComplete;
 
@@ -21,7 +22,7 @@ public class Mission extends BaseEntity {
     @Column(name = "mission_id")
     private Long id;
     private Integer missionPoint;
-//    private LocalDate deadLine;
+    private LocalDate deadLine;
     private String content;
 
     /**
