@@ -3,6 +3,9 @@ package umc.spring.domain;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.base.BaseEntity;
 
 import java.util.ArrayList;
@@ -11,6 +14,8 @@ import java.util.List;
 @Entity
 @Builder
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Store extends BaseEntity {
@@ -20,7 +25,7 @@ public class Store extends BaseEntity {
     private Long id;
     @Column(nullable = false,length = 60)
     private String storeName;
-    @Column(nullable = false,length = 30)
+    @ColumnDefault("0.0")
     private Float storeTotalGrade;
     @Column(nullable = false,length = 60)
     private String storeAddress;
@@ -37,4 +42,8 @@ public class Store extends BaseEntity {
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Mission> missionList = new ArrayList<>();
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 }
