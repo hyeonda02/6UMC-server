@@ -2,7 +2,10 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.base.BaseEntity;
+import umc.spring.repository.MemberRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +13,8 @@ import java.util.List;
 @Entity
 @Builder
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Review extends BaseEntity {
@@ -36,5 +41,21 @@ public class Review extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "store_review_id")
     private StoreReview storeReview;
+
+    public void setMember(Member member) {
+        if (this.member != null) {
+            member.getReviewList().remove(this);
+        }
+        this.member = member;
+        member.getReviewList().add(this);
+    }
+
+    public void setStore(Store store) {
+        if (this.reviewGrade != null)
+            store.getReviewList().remove(this);
+        this.store = store;
+        store.getReviewList().add(this);
+
+    }
 
 }
