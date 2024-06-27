@@ -21,7 +21,8 @@ public class Mission extends BaseEntity {
     @Column(name = "mission_id")
     private Long id;
     private Integer missionPoint;
-    private LocalDate deadLine;
+//    private LocalDate deadLine;
+    private String content;
 
     /**
      * 연관관계 매핑
@@ -32,4 +33,9 @@ public class Mission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
+
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
 }
