@@ -21,6 +21,7 @@ public class Mission extends BaseEntity {
     @Column(name = "mission_id")
     private Long id;
     private Integer missionPoint;
+    private String content;
     private LocalDate deadLine;
 
     /**
