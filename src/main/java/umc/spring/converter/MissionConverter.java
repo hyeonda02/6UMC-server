@@ -1,26 +1,28 @@
 package umc.spring.converter;
 
+import org.springframework.data.domain.Slice;
 import umc.spring.domain.Mission;
-import umc.spring.web.dto.MissionRequestDTO;
 import umc.spring.web.dto.MissionResponseDTO;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MissionConverter {
-    public static Mission toMission(MissionRequestDTO.missionDTO request) {
-        return Mission.builder()
-                .missionPoint(request.getMissionPoint())
-                .deadLine(LocalDate.from(request.getDeadLine()))
-                .content(request.getMissionContent())
+    public static MissionResponseDTO.MissionDTO toMissionDTO(Mission mission) {
+        return MissionResponseDTO.MissionDTO.builder()
+                .missionPont(mission.getMissionPoint())
+                .deadLine(mission.getDeadLine())
+                .content(mission.getContent())
                 .build();
     }
 
-    public static MissionResponseDTO.missionResultDTO toMissionResultDTO(Mission mission) {
-        return MissionResponseDTO.missionResultDTO.builder()
-                .missionId(mission.getId())
-                .createdAt(LocalDateTime.now())
+    public static MissionResponseDTO.MissionListDTO toMissionListDTO(Slice<Mission> missionList) {
+        List<MissionResponseDTO.MissionDTO> missionDTOList =missionList.stream().map(MissionConverter::toMissionDTO).collect(Collectors.toList());
+        return MissionResponseDTO.MissionListDTO.builder()
+                .hasNext(missionList.hasNext())
+                .hasPrevious(missionList.hasPrevious())
+                .size(missionList.getSize())
+                .missionList(missionDTOList)
                 .build();
-
     }
 }
